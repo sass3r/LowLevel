@@ -29,12 +29,12 @@ proc DlgProc,hWnd,uMsg,wParam,lParam
 	push edi esi ebx
 	
 	mov eax,[uMsg]
-	cmp	eax,WM_COMMAND
-	je	jCOMMAND
-	cmp	eax,WM_INITDIALOG
-	je	jINITDIALOG
-	cmp	eax,WM_CLOSE
-	je	jCLOSE
+	cmp eax,WM_COMMAND
+	je  jCOMMAND
+	cmp eax,WM_INITDIALOG
+	je  jINITDIALOG
+	cmp eax,WM_CLOSE
+	je  jCLOSE
 	xor eax,eax
 	jmp finish
 
@@ -46,8 +46,8 @@ jINITDIALOG:
 	
 jCOMMAND:
 	mov eax,[wParam]
-	cmp	eax,1000
-	je	a1000
+	cmp eax,1000
+	je  a1000
 	cmp eax,play
 	je  init_game
 	cmp eax,probar_char
@@ -110,16 +110,15 @@ proc comparaChar
 	invoke lstrlen,refran
 	mov ecx,eax
 bucle:
-		mov ah,[esi]
-		mov al,[ebx]
-		cmp ah,al
-		jne continuar
-		mov [edi],ah
+	mov ah,[esi]
+	mov al,[ebx]
+	cmp ah,al
+	jne continuar
+	mov [edi],ah
 	continuar:
 		inc esi
 		inc edi
-		loop bucle
-		
+	loop bucle
 	invoke SetDlgItemText,[pWnd],1002,cadena
 	ret
 endp
